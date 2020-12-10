@@ -1,0 +1,26 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: cloud-order-customer-opneFeign-80
+
+eureka:
+  client:
+    register-with-eureka: true  # 注册到eurekaServer
+    fetch-registry: true
+    service-url:
+#      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka, http://eureka7003.com:7003:/eureka
+      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
+
+# 设置feign客户端连接服务端的超时时间
+# 默认1000毫秒。如果1000毫秒后，客户端未得到服务端的响应，则直接报错
+ribbon:
+  ReadTimeout: 5000       # 指建立连接所用的时间，使用于网络状况正常的情况下，两端连接所用的时间
+  ConnectTimeout: 5000    # 建立连接后，从服务器读取到可用资源所用的时间
+
+# 开启openFeign的日志功能，设置日期级别
+logging:
+  level:
+    com.atguigu.cloud.service.OrderFeignService: debug  # 以什么级别监控哪个接口
+
